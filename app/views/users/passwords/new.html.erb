@@ -1,0 +1,38 @@
+<!-- Page content -->
+<div class="page-content">
+    <!-- Main content -->
+    <div class="content-wrapper">
+        <!-- Content area -->
+        <div class="content d-flex justify-content-center align-items-center">
+            <!-- Password recovery form -->
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <i class="icon-spinner11 icon-2x text-warning border-warning border-3 rounded-round p-3 mb-3 mt-1"></i>
+                            <h5 class="mb-0">Forgot your password?</h5>
+                            <span class="d-block text-muted">We'll send you instructions in email</span>
+                        </div>
+            			<%= render "layouts/shared/object_flash_messages", object: resource %>
+                        <div class="form-group form-group-feedback form-group-feedback-right">
+                            <input type="email" class="form-control" name="user[email]" placeholder="Your email">
+                            <div class="form-control-feedback">
+                                <i class="icon-mail5 text-muted"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        <button type="submit" class="btn bg-blue btn-block"><i class="icon-spinner11 mr-2"></i> Reset password</button>
+                        </div>
+	              <div class="text-center">
+	                <%= render "users/shared/links" %>
+	              </div>
+                    </div>
+                </div>
+            <% end %>
+            <!-- /password recovery form -->
+        </div>
+        <!-- /content area -->
+    </div>
+    <!-- /main content -->
+</div>
+<!-- /page content -->

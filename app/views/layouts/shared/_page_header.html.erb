@@ -1,0 +1,27 @@
+<div class="page-header page-header-light">
+  <div class="page-header-content header-elements-md-inline">
+    <div class="page-title d-flex">
+      <h4><i class="icon-home mr-2"></i><span class="font-weight-semibold">Online</span> - Forum</h4>
+      <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+    </div>
+    <h4><a href="/" class="breadcrumb-elements-item"><i class="icon-bubbles3 mr-2"></i>Posts</a></h4>
+    <% if user_signed_in? %>
+    <div class="header-elements d-none">
+      <div class="d-flex justify-content-center">
+        <a href="/posts/new" class="btn btn-link btn-float text-default"><i class="icon-pencil text-primary"></i> <span>New Post</span></a>
+        <a href="#" class="btn btn-link btn-float text-default"><i class="icon-mailbox text-primary"></i> <span>
+            <%= current_user.email%></span></a>
+        <a href="<%= destroy_user_session_path %>" class="btn btn-link btn-float text-default"><i class="icon-switch2 text-primary"></i> <span>Logout</span></a>
+      </div>
+    </div>
+    <% else %>
+    <div class="header-elements d-none">
+      <div class="d-flex justify-content-center">
+         <a href="/posts/new" class="btn btn-link btn-float text-default"><i class="icon-pencil text-primary"></i> <span>New Post</span></a>
+        <a href="/users/sign_up" class="btn btn-link btn-float text-default"><i class="icon-user-plus text-primary"></i> <span>Sign Up</span></a>
+        <a href="/users/sign_in" class="btn btn-link btn-float text-default"><i class="icon-users2 text-primary"></i> <span>Sign In</span></a>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

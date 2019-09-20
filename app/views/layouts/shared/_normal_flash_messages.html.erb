@@ -1,0 +1,16 @@
+<% if notice.present? %>
+	<div class="alert alert-success alert-bordered alert-dismissible">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<ul class="list list-square mb-0" style="-webkit-padding-start: 10px!important; -moz-padding-start: 10px!important; -ms-padding-start: 10px!important; -o-padding-start: 10px!important;">
+			<li><%= notice %></li>
+		</ul>
+  </div>
+<% end %>
+<% if alert.present? %>
+  <div class="alert alert-danger alert-bordered alert-dismissible">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<ul class="list list-square mb-0" style="-webkit-padding-start: 10px!important; -moz-padding-start: 10px!important; -ms-padding-start: 10px!important; -o-padding-start: 10px!important;">
+			<li><%= alert %></li>
+		</ul>
+  </div>
+<% end %>
