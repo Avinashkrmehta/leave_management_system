@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  leave_apply: 2019-09-21 10:40:14
+  leave_to: 2019-09-21 10:40:14
+  leave_from: 2019-09-21 10:40:14
+  reason: MyText
+  reporting_head: 
+  user: one
+
+two:
+  leave_apply: 2019-09-21 10:40:14
+  leave_to: 2019-09-21 10:40:14
+  leave_from: 2019-09-21 10:40:14
+  reason: MyText
+  reporting_head: 
+  user: two

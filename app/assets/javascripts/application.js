@@ -15,12 +15,15 @@
 //= require jquery.min
 //= require bootstrap.bundle.min
 //= require blockui.min
+//= require datepicker
+//= require form_select2
+//= require select2.min
+//= require datatables.min
 //= require d3.min
 //= require d3_tooltip
 //= require switchery.min
 //= require bootstrap_multiselect
 //= require moment.min
-//= require daterangepicker
 //= require app
 //= require dashboard
 // require turbolinks

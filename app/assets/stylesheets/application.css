@@ -16,6 +16,7 @@
  *= require layout.min
  *= require components.min
  *= require colors.min
+ *= require datepicker.css
  * require_tree .
  * require_self
  */
