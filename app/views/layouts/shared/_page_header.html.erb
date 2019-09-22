@@ -18,7 +18,9 @@
     <% if user_signed_in? %>
     <div class="header-elements d-none">
       <div class="d-flex justify-content-center">
+        <% if current_user.role == "admin" %>
          <a href="/admin/leave" class="btn btn-link btn-float text-default"><i class="icon-user-plus text-primary"></i> <span>Leave Requests</span></a>
+         <% end %>
         <ul class="navbar-nav">
           <li class="nav-item dropdown dropdown-user">
             <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
@@ -30,8 +32,8 @@
               <% end %>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a href="<%= admin_path(current_user)%>" class="dropdown-item"><i class="icon-user"></i> Profile</a>
-              <a href="#" class="dropdown-item"><i class="icon-lock2"></i> Change Password</a>
+              <a href="<%= edit_user_registration_path %>" class="dropdown-item"><i class="icon-user"></i> Profile</a>
+              <a href="<%= edit_user_registration_path %>" class="dropdown-item"><i class="icon-lock2"></i> Change Password</a>
               <div class="dropdown-divider"></div>
               <a href="<%= destroy_user_session_path %>" class="dropdown-item" data-method="DELETE"><i class="icon-switch2"></i> Logout</a>
             </div>

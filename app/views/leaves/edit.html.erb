@@ -40,14 +40,14 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Enter From Date:</label>
                                      <div class="col-lg-9">
-                                    <input type="text"  name="leave[leave_from]" value="<%= @leave.leave_from %>" placeholder="From date" aria-label="First name" class="form-control start-date">
+                                    <input type="text"  name="leave[leave_from]" value="<%= @leave.leave_from.strftime("%m/%d/%Y") %>" placeholder="From date" aria-label="First name" class="form-control start-date">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Enter To Date:</label>
                                      <div class="col-lg-9">
-                                    <input type="text"  name="leave[leave_to]" value="<%= @leave.leave_to %>" placeholder="To date" aria-label="Last name" class="form-control end-date">
+                                    <input type="text"  name="leave[leave_to]" value="<%= @leave.leave_to.strftime("%m/%d/%Y") %>" placeholder="To date" aria-label="Last name" class="form-control end-date">
                                     </div>
                                 </div>
 

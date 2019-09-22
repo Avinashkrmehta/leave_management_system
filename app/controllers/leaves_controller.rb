@@ -34,6 +34,7 @@ class LeavesController < ApplicationController
     @leave.user_id = current_user.id
     respond_to do |format|
       if @leave.save
+        UserMailer.leave_request_email(current_user, @leave).deliver_now
         format.html { redirect_to leaves_path, notice: 'leave was successfully created.' }
         format.json { render :new, status: :created, location: @leave }
       else
@@ -52,6 +53,7 @@ class LeavesController < ApplicationController
     reason = params[:leave][:reason]
     respond_to do |format|
       if @leave.update(leave_to: to_date, leave_from: from_date, leave_apply: DateTime.now, reason: reason )
+        UserMailer.leave_request_email_edited(current_user, @leave).deliver_now
         format.html { redirect_to leaves_path, notice: 'leave was successfully updated.' }
         format.json { render :show, status: :ok, location: @leave }
       else

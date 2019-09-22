@@ -21,6 +21,7 @@ class AdminController < ApplicationController
 		@leave = Leave.find(params[:id])
 		@leave.status = params[:status]
   	if @leave.save
+      UserMailer.leave_request_status(current_user, @leave).deliver_now
   		flash[:notice] = "Status Updated"
   	else
   		flash[:alert] = "Something went wrong can't update status"
