@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_21_051013) do
+ActiveRecord::Schema.define(version: 2019_09_21_124310) do
 
   create_table "leaves", force: :cascade do |t|
     t.datetime "leave_apply"
@@ -33,6 +33,9 @@ ActiveRecord::Schema.define(version: 2019_09_21_051013) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "max_leave"
+    t.string "username"
+    t.string "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

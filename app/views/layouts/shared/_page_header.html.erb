@@ -1,7 +1,16 @@
 <div class="page-header page-header-light">
   <div class="page-header-content header-elements-md-inline">
     <div class="page-title d-flex">
-      <a href="/">
+      <% if current_user %>
+        <% if current_user.role == "admin" %>
+           <a href="<%= admin_index_path %>">
+        <% end %>
+        <% if current_user.role == "user" %>
+           <a href="<%= leaves_path %>">
+        <% end %>
+      <% else %>
+          <a href="/">
+      <% end %> 
         <h4><i class="icon-users4 mr-2"></i><span class="font-weight-semibold">Leave Management</span> - System</h4>
         <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
       </a>
@@ -9,20 +18,48 @@
     <% if user_signed_in? %>
     <div class="header-elements d-none">
       <div class="d-flex justify-content-center">
-        <a href="/leaves/new" class="btn btn-link btn-float text-default"><i class="icon-pencil text-primary"></i> <span>New Leave</span></a>
-        <a href="#" class="btn btn-link btn-float text-default"><i class="icon-mailbox text-primary"></i> <span>
-            <%= current_user.email%></span></a>
-        <a href="<%= destroy_user_session_path %>" class="btn btn-link btn-float text-default"><i class="icon-switch2 text-primary"></i> <span>Logout</span></a>
+         <a href="/admin/leave" class="btn btn-link btn-float text-default"><i class="icon-user-plus text-primary"></i> <span>Leave Requests</span></a>
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown dropdown-user">
+            <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+                <%= image_tag "placeholder.jpg", class: "rounded-circle", alt: "placeholder.jpg" %>
+              <% if user_signed_in? %>
+                <span><%= current_user.try(:username) %></span>
+              <% else %>
+                <span>User Name</span>
+              <% end %>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a href="<%= admin_path(current_user)%>" class="dropdown-item"><i class="icon-user"></i> Profile</a>
+              <a href="#" class="dropdown-item"><i class="icon-lock2"></i> Change Password</a>
+              <div class="dropdown-divider"></div>
+              <a href="<%= destroy_user_session_path %>" class="dropdown-item" data-method="DELETE"><i class="icon-switch2"></i> Logout</a>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
     <% else %>
     <div class="header-elements d-none">
       <div class="d-flex justify-content-center">
-        <a href="/users/sign_up" class="btn btn-link btn-float text-default"><i class="icon-user-plus text-primary"></i> <span>Sign Up</span></a>
+        <!-- <a href="/users/sign_up" class="btn btn-link btn-float text-default"><i class="icon-user-plus text-primary"></i> <span>Sign Up</span></a> -->
         <a href="/users/sign_in" class="btn btn-link btn-float text-default"><i class="icon-users2 text-primary"></i> <span>Sign In</span></a>
       </div>
     </div>
     <% end %>
   </div>
 </div>
-
+<div class="page-header page-header-light">
+  <% if current_user %>
+  <% if current_user.role == "admin" %>
+    <div class="page-header-content header-elements-md-inline justify-content-center">
+      <h4><i class="icon-user mr-2"></i><span class="font-weight-semibold">Admin</span> - Dashboard</h4>
+    </div>
+  <% end %>
+  <% if current_user.role == "user" %>
+    <div class="page-header-content header-elements-md-inline justify-content-center">
+      <h4><i class="icon-user mr-2"></i><span class="font-weight-semibold">User</span> - Dashboard</h4>
+    </div>
+  <% end %> 
+  <% end%> 
+</div>

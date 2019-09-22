@@ -1,0 +1,57 @@
+<!-- Pagination types -->
+<div class="card">
+  <div class="card-header header-elements-inline ">
+    <h5 class="card-title">User and Its Leave Details</h5>
+		<div class="header-elements">
+			<div class="list-icons">
+				  <a href="/admin/new" class="btn btn-link btn-float text-default"><button type="button" class="btn btn-primary"><i class="icon-add mr-2"></i>Add User</button></a>
+			</div>
+		</div>
+  </div>
+  <div class="content">
+    <table class="table datatable-pagination">
+      <thead>
+        <tr>
+          <th>User Name</th>
+          <th>Email</th>
+          <th>Max Leave</th>
+          <th>Role</th>
+          <th>Leave Balance</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |l| %>
+        <tr>
+          <td><%=l.username %></td>
+          <td><%=l.email %></td>
+          <td><%=l.max_leave %></td>
+          <td><%=l.role %></td>
+          <td>
+	          <% if l.max_leave > 5 %>
+              <span class="badge badge-info">6</span>
+            <% end %>
+            <% if l.max_leave <= 5 %>
+              <span class="badge badge-danger">2</span>
+            <% end %>          
+          </td>
+          <td class="text-center">
+            <div class="list-icons">
+              <div class="dropdown">
+                <a href="#" class="list-icons-item" data-toggle="dropdown">
+                  <i class="icon-menu9"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <a href="<%= edit_admin_path(l) %>" class="dropdown-item"><i class="icon-pencil6"></i>Edit</a>
+                  <a href="<%= admin_path(l) %>" class="dropdown-item"><i class="icon-eye4"></i>Show</a>
+                  <a href="<%= admin_path(l) %>" data-confirm="Are you sure?"  data-method="delete" class="dropdown-item"><i class="icon-bin2"></i>Delete</a>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

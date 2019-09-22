@@ -1,0 +1,68 @@
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="basic-tab3">
+    <div class="card">
+      <div class="content">
+      <table class="table datatable-basic">
+        <thead>
+          <tr>
+            <th>Leave Apply Date</th>
+            <th>From Date</th>
+            <th>To Date</th>
+            <th>Reporting Head</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @leaves.each do |l| %>
+          <tr>
+            <td><%=l.leave_apply.strftime("%^A, %d %^B %Y %I:%M %p") if l.leave_apply %></td>
+            <td><%=l.leave_to.strftime("%^A, %d %^B %Y %I:%M %p") if l.leave_to %> </td>
+            <td><%=l.leave_from.strftime("%^A, %d %^B %Y %I:%M %p") if l.leave_from %></td>
+            <td><%=l.reporting_head %></td>
+            <td><%=l.reason %></td>
+            <td>
+              <% if l.status == "applied" %>
+                <span class="badge badge-info"><%=l.status %></span>
+              <% end %>
+              <% if l.status == "approved" %>
+                <span class="badge badge-success"><%=l.status %></span>
+              <% end %>
+              <% if l.status == "rejected" %>
+                <span class="badge badge-danger"><%=l.status %></span>
+              <% end %>
+            </td>
+            <td class="text-center">
+              <div class="list-icons">
+                <div class="dropdown">
+                  <a href="#" class="list-icons-item" data-toggle="dropdown">
+                    <i class="icon-menu9"></i>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right">
+                    <a href="/admin/leave" onclick="return miniReport('<%= l.id%>', 'approved')" class="dropdown-item" ><i class="icon-thumbs-up2"></i>Approved</a>
+                    <a href="/admin/leave" onclick="return miniReport('<%= l.id%>', 'rejected')" class="dropdown-item" ><i class="icon-thumbs-down2"></i>Reject</a>
+                    <a href="<%= leafe_path(l) %>" data-confirm="Are you sure?"  data-method="delete" class="dropdown-item"><i class="icon-bin2"></i>Delete</a>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+</div>
+<script type="text/javascript">
+function miniReport(id,status){
+   $.ajax({
+        url: "/admin/leave_request",
+        timeout:30000,
+        type: "POST",
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        data: {id: id, status: status },
+     });
+ };
+</script>

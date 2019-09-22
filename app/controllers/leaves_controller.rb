@@ -1,10 +1,15 @@
 class LeavesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_leave, only: [:show, :edit, :update, :destroy]
-
+  before_action :max_leaves, only: [:new]
   def index
     @leaves = Leave.where(user_id: current_user.id)
-    @users = User.all
+    @applied_leaves = Leave.where(status: "applied").where(user_id: current_user.id)
+    @approved_leaves = Leave.where(status: "approved").where(user_id: current_user.id)
+    @rejected_leaves = Leave.where(status: "rejected").where(user_id: current_user.id)
+    @leave_balance = current_user.max_leave - Leave.where(status: "rejected").where(user_id: current_user.id).count
+
+    current_user.max_leave
   end
 
   def show
@@ -60,7 +65,7 @@ class LeavesController < ApplicationController
   def destroy
     @leave.destroy
     respond_to do |format|
-      format.html { redirect_to leaves_url, notice: 'leave was successfully destroyed.' }
+      format.html { redirect_to admin_leave_path, notice: 'leave was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -77,5 +82,12 @@ class LeavesController < ApplicationController
       params.fetch(:leave, {})
       params.require(:leave).permit(:leave_apply,:leave_to,:leave_from,:reason,:reporting_head)
     end
+
+  def max_leaves
+    if current_user.max_leave == (current_user.leaves.where(:status => "approved").count + current_user.leaves.where(:status => "applied").count)
+      flash[:notice] = "Sorry , Your Leaves Have been Completed"
+      redirect_to leaves_path
+    end  
+  end  
 
 end

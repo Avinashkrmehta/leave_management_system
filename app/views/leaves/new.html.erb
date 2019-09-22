@@ -31,12 +31,12 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Reporting Head:</label>
                                     <div class="col-lg-9">
-									<select class="form-control select" name="leave[reporting_head]" data-fouc>
-											<option value= 1 >Arizona</option>
-											<option value= 2 >Colorado</option>
-											<option value= 3 >Idaho</option>
-											<option value= 4 >Wyoming</option>
-									</select>
+                                        <select class="form-control select" name="leave[reporting_head]">
+                                            <option value="">Select</option>
+                                            <% User.admins.each do |adm| %>
+                                            <option value="<%= adm.id %>"><%= adm.username %> (<%= adm.role %>)</option>
+                                            <% end %>
+                                        </select>   
                                     </div>
                                 </div>
 								<div class="form-group row">

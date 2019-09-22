@@ -1,0 +1,60 @@
+<!-- Centered forms -->
+<div class="card-body">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-10 offset-md-1">
+              <div class="header-elements-inline justify-content-center">
+                <h5 class="card-title font-weight-semibold">Create User</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-10 offset-md-1">
+              <%= form_with(method: :put, url: admin_path, local: true) do |form| %>
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label">Email:</label>
+                <div class="col-lg-9">
+                  <input type="email" name="user[email]" value="<%= @user.email %>" class="form-control" readonly="true" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label">Role:</label>
+                <div class="col-lg-9">
+                  <select class="form-control select" name="user[role]" disabled="true" data-fouc>
+                    <option value="admin"<%="selected" if @user.role=="admin" %>>admin</option>
+                    <option value="user" <%="selected" if @user.role=="user" %>>user</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label">Username:</label>
+                <div class="col-lg-9">
+                  <input type="text" name="user[username]" value="<%= @user.username %>" readonly="true" placeholder="User Name"class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label">Max Leave</label>
+                <div class="col-lg-9">
+                  <input type="number" name="user[max_leave]" value="<%= @user.max_leave %>" readonly="true" placeholder="Maximum Leave" class="form-control">
+                </div>
+              </div>
+              <% end %>
+              <div class="text-center">
+                 <a href="<%= admin_index_path %>"><button class="btn btn-primary">Back<i class="icon-paperplane ml-2"></i></button></a>
+              </div>              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
