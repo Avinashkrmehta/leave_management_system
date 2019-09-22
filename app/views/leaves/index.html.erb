@@ -43,8 +43,8 @@
                   <% @leaves.each do |l| %>
                   <tr>
                     <td><%=l.leave_apply.strftime("%^A, %d %^B %Y %I:%M %p") if l.leave_apply %></td>
-                    <td><%=l.leave_to.strftime("%^A, %d %^B %Y %I:%M %p") if l.leave_to %> </td>
                     <td><%=l.leave_from.strftime("%^A, %d %^B %Y %I:%M %p") if l.leave_from %></td>
+                    <td><%=l.leave_to.strftime("%^A, %d %^B %Y %I:%M %p") if l.leave_to %> </td>
                     <td><%= User.admins.find(l.reporting_head).username if l.reporting_head %></td>
                     <td><%=l.reason %></td>
                     <td>
