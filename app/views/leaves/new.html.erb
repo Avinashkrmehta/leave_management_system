@@ -31,7 +31,7 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Reporting Head:</label>
                                     <div class="col-lg-9">
-                                        <select class="form-control select" name="leave[reporting_head]">
+                                        <select class="form-control select" name="leave[reporting_head]" required="true">
                                             <option value="">Select</option>
                                             <% User.admins.each do |adm| %>
                                             <option value="<%= adm.id %>"><%= adm.username %> (<%= adm.role %>)</option>
@@ -42,21 +42,21 @@
 								<div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Enter From Date:</label>
                                      <div class="col-lg-9">
-                                    <input type="text"  name="leave[leave_from]" placeholder="From date" aria-label="First name" class="form-control start-date">
+                                    <input type="text"  name="leave[leave_from]" placeholder="From date" aria-label="First name" class="form-control start-date" required="true">
                                     </div>
 								</div>
 
 								<div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Enter To Date:</label>
                                      <div class="col-lg-9">
-                                    <input type="text"  name="leave[leave_to]" placeholder="To date" aria-label="Last name" class="form-control end-date">
+                                    <input type="text"  name="leave[leave_to]" placeholder="To date" aria-label="Last name" class="form-control end-date" required="true">
                                     </div>
 								</div>
 
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Reason For Leave:</label>
                                     <div class="col-lg-9">
-                                        <textarea rows="5" cols="5"  name="leave[reason]" class="form-control" placeholder="Enter your message here"></textarea>
+                                        <textarea rows="5" cols="5"  name="leave[reason]" class="form-control" placeholder="Enter your message here" required="true"></textarea>
                                     </div>
                                 </div>
 
